@@ -3,8 +3,6 @@
 			"/home/karsten/boost"
 			"/home/karsten/src/odeint-v2"
                         "/home/karsten/src/taylor"
-                        "/home/karsten/src/ambrosys/tc-supertoll/trunk/src"
-			"/home/karsten/src/ambrosys/tc-supertoll"
                        ))
 
 ; (setq c-default-style "cc-mode")
