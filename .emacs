@@ -21,6 +21,8 @@
 			"/home/karsten/boost"
 			"/home/karsten/src/odeint-v2"
                         "/home/karsten/src/taylor"
+                        "/home/karsten/src/ambrosys/tc-supertoll/trunk/src"
+			"/home/karsten/src/ambrosys/tc-supertoll"
                        ))
 (setq ecb-layout-name "left13")
 (setq ecb-tip-of-the-day nil)
@@ -39,8 +41,10 @@
 
 (global-set-key (kbd "<Ret>") 'switch-to-buffer-other-window)
 
-
-
+; tabbar customization
+(setq tabbar-buffer-groups-function
+      (lambda ()
+	(list "All"))) ;; code by Peter Barabas
 
 ; Tastenkombinationen:
 ;
