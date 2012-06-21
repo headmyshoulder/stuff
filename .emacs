@@ -2,6 +2,7 @@
 
 (setq c-default-style '((c++-mode . "bsd")))
 (setq c-basic-offset 4)
+(setq-default indent-tabs-mode nil)
 
 (add-to-list 'auto-mode-alist '("\\.cu$" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
@@ -45,6 +46,11 @@
 (setq tabbar-buffer-groups-function
       (lambda ()
 	(list "All"))) ;; code by Peter Barabas
+
+
+; startup modes
+(ecb-activate)
+(tabbar-mode)
 
 ; Tastenkombinationen:
 ;
