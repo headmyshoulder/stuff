@@ -18,10 +18,11 @@
 ; ecb customization
 
 (setq ecb-source-path '(
-			"/home/karsten/src/test"
 			"/home/karsten/boost"
+                        "/home/karsten/src/"
+			"/home/karsten/src/test"
 			"/home/karsten/src/odeint-v2"
-                        "/home/karsten/src/taylor"
+                        "/home/karsten/src/ambrosys"
                        ))
 (setq ecb-layout-name "left13")
 (setq ecb-tip-of-the-day nil)
@@ -38,12 +39,16 @@
 (global-set-key (kbd "C-c C-v") 'uncomment-region)
 
 
-(global-set-key (kbd "<Ret>") 'switch-to-buffer-other-window)
-
 ; tabbar customization
 (setq tabbar-buffer-groups-function
       (lambda ()
 	(list "All"))) ;; code by Peter Barabas
+
+; yasnippet customization
+; (add-to-list 'load-path "~/.emacs.d/plugins/yasnippet")
+(add-to-list 'load-path "/usr/share/emacs//site-lisp/yasnippet" )
+(require 'yasnippet)
+(yas/global-mode 1)
 
 
 ; startup modes
@@ -56,3 +61,7 @@
 ; o in buffer window open buffer
 ; C-x left next buffer
 ; C-x right previous buffer
+
+
+(custom-set-variables  '(ecb-options-version "2.40")) 
+(custom-set-faces )
