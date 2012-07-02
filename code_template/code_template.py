@@ -9,8 +9,6 @@ import json
 from pprint import pprint
 from string import Template
 
-import templates.simplecpp
-
 directories = [ os.path.join( os.path.dirname( os.path.realpath(__file__) ) , "templates" ) ]
 
 config = {
@@ -20,8 +18,8 @@ config = {
 
 default_replacements = {
     "FILENAME" : "abc" ,
-    "FILENAME_CAP" : "ABC" ,
-    "FILEENDING_CAP" : "HPP" ,
+    "FILENAMECAP" : "ABC" ,
+    "FILEENDINGCAP" : "HPP" ,
     "DIRECTORY" : "" ,
     "AUTHOR" : config[ "Author" ] ,
     "AUTHOREMAIL" : config[ "AuthorEmail" ] ,
@@ -58,9 +56,9 @@ def get_replacements( template , args ):
     rep = default_replacements
     if hasattr( args , "filename" ) :
         fn = os.path.basename( args.filename[0] )
-        rep[ "FILENAME_CAP" ] = ( os.path.splitext( fn )[0] ).upper()
+        rep[ "FILENAMECAP" ] = ( os.path.splitext( fn )[0] ).upper()
         ext = ( os.path.splitext( fn )[1] ).upper()
-        rep[ "FILEENDING_CAP" ] = ext[ 1: ]
+        rep[ "FILEENDINGCAP" ] = ext[ 1: ]
         rep[ "FILENAME" ] = fn
     return rep
 

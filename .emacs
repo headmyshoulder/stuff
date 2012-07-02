@@ -46,9 +46,9 @@
 
 ; yasnippet customization
 ; (add-to-list 'load-path "~/.emacs.d/plugins/yasnippet")
-(add-to-list 'load-path "/usr/share/emacs//site-lisp/yasnippet" )
-(require 'yasnippet)
-(yas/global-mode 1)
+; (add-to-list 'load-path "/usr/share/emacs//site-lisp/yasnippet" )
+; (require 'yasnippet)
+; (yas/global-mode 1)
 
 
 ; startup modes

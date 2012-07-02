@@ -1,6 +1,6 @@
 {
     "name" : "simplecpp" ,
-    "help" : "Creates a simple \"Hello world\" C++ file with one main function" ,
+    "help" : "Creates a simple \"Hello world\" C++ file with one main function." ,
     "parameters" : [
         { "filename" : "filename" , "help" : "Output file name" } 
         ] ,

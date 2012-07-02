@@ -1,0 +1,8 @@
+{
+    "name" : "supertollsource" ,
+    "help" : "Creates a simple source file for SuperToll." ,
+    "parameters" : [
+        { "filename" : "filename" , "help" : "Output file name" } 
+        ] ,
+    "code" : "supertoll_source.cpp"
+}
