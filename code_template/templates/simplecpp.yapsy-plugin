@@ -1,0 +1,9 @@
+[Core]
+Name = SimpleCpp
+Module = simplecpp
+
+[Documentation]
+Author = Karsten Ahnert
+Version = 0.1
+Website = http://karstenahnert.com
+Description = Creates a simple \"Hello world\" C++ file with one main function.
