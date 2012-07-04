@@ -1,0 +1,8 @@
+{
+    "name" : "ambossheader" ,
+    "help" : "Creates a simple header with header guards for Amboss." ,
+    "parameters" : [
+        { "filename" : "filename" , "help" : "Output file name" } 
+        ] ,
+    "code" : "amboss_header.h"
+}

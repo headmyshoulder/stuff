@@ -1,0 +1,8 @@
+{
+    "name" : "ambossmain" ,
+    "help" : "Creates a simple \"Hello world!\" application for Amboss." ,
+    "parameters" : [
+        { "filename" : "filename" , "help" : "Output file name" } 
+        ] ,
+    "code" : "amboss_main.cpp"
+}
