@@ -1,25 +1,39 @@
 #! /usr/bin/python
 
 import os
-import imp
 
 from string import Template
-
 from yapsy.IPlugin import IPlugin
 
-
-def create_subparser( plugin , subparsers ):
-    parser = subparsers.add_parser( plugin.name , help = plugin.help )
-    parser.set_defaults( which = plugin.name )
-    return parser
+import code_template_helpers
 
 
-def add_filename_replacements( rep , filename ):
-    fn = os.path.basename( filename )
-    rep[ "FILENAMECAP" ] = ( os.path.splitext( fn )[0] ).upper()
-    rep[ "FILEENDINGCAP" ] =  (( os.path.splitext( fn )[1] ).upper())[ 1: ]
-    rep[ "FILENAME" ] = fn
-    rep[ "DIRECTORY" ] = os.path.dirname( filename )
+filename_help = "Output file name(s)"
+namespace_help = "Namespace definitions to be created."
+class_help = "Class templates to be created" 
+template = """/*
+ * $FILENAME
+ * Date: $DATE
+ * Author: $AUTHOR ($AUTHOREMAIL)
+ */
+
+
+$NAMESPACE_OPENING
+
+$CLASS_TEMPLATE
+
+$NAMESPACE_CLOSING
+"""
+
+class_template = """class $CLASSNAME
+{
+ public:
+
+    $CLASSNAME( void );
+    ~$CLASSNAME( void );
+};
+
+"""
 
 
 class supertoll_header( IPlugin ):
@@ -27,40 +41,52 @@ class supertoll_header( IPlugin ):
     def __init__( self ):
         self.name = "supertollheader"
         self.help = "Creates a header file with header guards and namespace defintions for SuperToll."
-        self.filename_help = "Output file name(s)"
-        self.namespace_help = "Namespace definitions to be created."
-        self.template = """/*
- * $FILENAME
- * Date: $DATE
- * Author: $AUTHOR ($AUTHOREMAIL)
- */
-"""
 
-    def set_base_path( self , path ):
-        mod = imp.find_module( "code_template_helpers" , [ path ] )
 
     def register_in_arg_parser( self , subparsers ):
-        parser = create_subparser( self , subparsers )
-        parser.add_argument( "-f" , "--filename" ,  nargs = "+" , help = self.filename_help , required=True )
-        parser.add_argument( "-n" , "--namespace" , nargs = "*" , help = self.namespace_help )
+        parser = code_template_helpers.create_subparser( self , subparsers )
+        parser.add_argument( "-f" , "--filename" ,  nargs = "+" , help = filename_help , required=True )
+        parser.add_argument( "-n" , "--namespace" , nargs = "*" , help = namespace_help )
+        parser.add_argument( "-c" , "--class" , nargs = "*" , help = class_help , dest = "classes" )
 
-    def do_work( self , args , default_replacements ):
+
+    def do_work( self , args , replacements ):
+
         print "Creating " + self.name + " template(s) ..."
+
+        replacements[ "NAMESPACE_OPENING" ] = "namespace SuperToll {\n"
+        replacements[ "NAMESPACE_CLOSING" ] = "} // namespace SuperToll\n"
+        replacements[ "CLASS_TEMPLATE" ] = ""
+
         if hasattr( args , "namespace" ) and ( len( args.namespace ) != 0 ) :
-            s = "Found namespaces "
-            for namespace in args.namespace: s += namespace + " "
+            s = "Found namespace(s) : "
+            for namespace in args.namespace : s += namespace + " "
             print s
+
+            for namespace in args.namespace:
+                replacements[ "NAMESPACE_OPENING" ] += "namespace " + namespace + " {\n"
+                replacements[ "NAMESPACE_CLOSING" ] = "} // namespace " + namespace + "\n" + replacements[ "NAMESPACE_CLOSING" ]
+
+        if hasattr( args , "classes" ) and ( len( args.classes ) != 0 ) :
+            s = "Found class(es) : "
+            for c in args.classes : s += c + " "
+            print s
+
+            for c in args.classes:
+                class_source = Template( class_template )
+                replacements[ "CLASS_TEMPLATE" ] += class_source.substitute( { "CLASSNAME" : c } )
+            
         if hasattr( args , "filename" ) :
             for filename in args.filename:
-                self.process( filename , default_replacements )
+                self.process( filename , replacements )
 
-    def process( self , filename , default_replacements ):
+
+    def process( self , filename , replacements ):
         print "* Creating " + filename + " ..."
-        replacements = default_replacements
-        add_filename_replacements( replacements , filename )
-        source = Template( self.template )
-        # f = open( filename , "w" );
-        # f.write( source.substitute( replacements ) )
+        code_template_helpers.add_filename_replacements( replacements , filename )
+        source = Template( template )
+        f = open( filename , "w" );
+        f.write( source.substitute( replacements ) )
 
     
 

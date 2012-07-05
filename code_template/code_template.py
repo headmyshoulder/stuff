@@ -29,16 +29,13 @@ subparsers = parser.add_subparsers( help="subcommand help" )
 templates = {}
 
 
+
 def register_plugin( plugin_info ):
     plugin = plugin_info.plugin_object
-    plugin.set_base_path( os.path.dirname( os.path.realpath( __file__ ) ) )
     plugin.register_in_arg_parser( subparsers )
     templates[ plugin.name ] = plugin
 
-
-
 def main():   
-    # Create the Arg Parser
 
     # Load and register all plugins
     manager = PluginManager( directories_list = directories )
@@ -46,7 +43,7 @@ def main():
     for plugin in manager.getAllPlugins():
         register_plugin( plugin ) 
 
-
+    # parse arguments and evaluate the current template
     args = parser.parse_args()
     template = templates[ args.which ]
     template.do_work( args , default_replacements )
