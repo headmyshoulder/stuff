@@ -7,6 +7,7 @@ import glob
 
 from yapsy.PluginManager import PluginManager
 
+
 description = "Create source code templates for commonly used files."
 
 directories = [ os.path.join( os.path.dirname( os.path.realpath(__file__) ) , "templates" ) ]
@@ -14,6 +15,12 @@ directories = [ os.path.join( os.path.dirname( os.path.realpath(__file__) ) , "t
 config = {
     "Author" : "Karsten Ahnert" ,
     "AuthorEmail" : "karsten.ahnert@gmx.de"
+}
+
+default_replacements = {
+    "AUTHOR" : config[ "Author" ] ,
+    "AUTHOREMAIL" : config[ "AuthorEmail" ] ,
+    "DATE" : datetime.date.today().isoformat()
 }
 
 
@@ -24,6 +31,7 @@ templates = {}
 
 def register_plugin( plugin_info ):
     plugin = plugin_info.plugin_object
+    plugin.set_base_path( os.path.dirname( os.path.realpath( __file__ ) ) )
     plugin.register_in_arg_parser( subparsers )
     templates[ plugin.name ] = plugin
 
@@ -41,7 +49,7 @@ def main():
 
     args = parser.parse_args()
     template = templates[ args.which ]
-    template.do_work( args )
+    template.do_work( args , default_replacements )
 
     
 

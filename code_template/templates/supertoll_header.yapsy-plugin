@@ -1,0 +1,9 @@
+[Core]
+Name = SuperTollHeader
+Module = supertoll_header
+
+[Documentation]
+Author = Karsten Ahnert
+Version = 0.1
+Website = http://karstenahnert.com
+Description = Creates a header file with header guards and namespace defintions for SuperToll.
