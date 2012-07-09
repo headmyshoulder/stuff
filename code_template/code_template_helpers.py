@@ -3,6 +3,17 @@
 import os
 from string import Template
 
+default_class_template = """class $CLASSNAME
+{
+public:
+
+    $CLASSNAME( void );
+    ~$CLASSNAME( void );
+};
+
+"""
+
+
 def create_subparser( plugin , subparsers ):
     parser = subparsers.add_parser( plugin.name , help = plugin.help )
     parser.set_defaults( which = plugin.name )
