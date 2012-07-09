@@ -1,0 +1,9 @@
+[Core]
+Name = SuperTollSource
+Module = supertoll_source
+
+[Documentation]
+Author = Karsten Ahnert
+Version = 0.1
+Website = http://karstenahnert.com
+Description = Creates a source file for SuperToll.

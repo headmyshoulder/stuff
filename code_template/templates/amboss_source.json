@@ -1,8 +1,0 @@
-{
-    "name" : "ambosssource" ,
-    "help" : "Creates a simple source file for Amboss." ,
-    "parameters" : [
-        { "filename" : "filename" , "help" : "Output file name" } 
-        ] ,
-    "code" : "amboss_source.cpp"
-}

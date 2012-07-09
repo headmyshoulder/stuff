@@ -1,0 +1,9 @@
+[Core]
+Name = AmbossHeader
+Module = amboss_header
+
+[Documentation]
+Author = Karsten Ahnert
+Version = 0.1
+Website = http://karstenahnert.com
+Description = Creates a simple header with header guards for Amboss.

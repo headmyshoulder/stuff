@@ -1,8 +1,0 @@
-{
-    "name" : "simplecpp" ,
-    "help" : "Creates a simple \"Hello world\" C++ file with one main function." ,
-    "parameters" : [
-        { "filename" : "filename" , "help" : "Output file name" } 
-        ] ,
-    "code" : "simplecpp.cpp"
-}

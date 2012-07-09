@@ -1,8 +1,0 @@
-{
-    "name" : "supertollheader" ,
-    "help" : "Creates a simple header with header guards for SuperToll." ,
-    "parameters" : [
-        { "filename" : "filename" , "help" : "Output file name" } 
-        ] ,
-    "code" : "supertoll_header.h"
-}

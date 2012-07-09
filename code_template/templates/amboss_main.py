@@ -1,14 +1,11 @@
 #! /usr/bin/python
 
 import os
-import imp
-import sys
-from string import Template
 
+from string import Template
 from yapsy.IPlugin import IPlugin
 
 import code_template_helpers
-
 
 
 filename_help = "Output file name(s)"
@@ -16,16 +13,18 @@ template = """/*
  * $FILENAME
  * Date: $DATE
  * Author: $AUTHOR ($AUTHOREMAIL)
+ * Copyright: $AUTHOR
+ *
+ * Use, modification and distribution is subject to the Boost Software License,
+ * Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at
+ * http://www.boost.org/LICENSE_1_0.txt)
  */
 
 #include <iostream>
 
-#define tab "\\t"
-
 using namespace std;
 
-
-int main( int argc , char *argv[] )
+int main( int argc , char **argv )
 {
     cout << "Hello world!" << endl;
     return 0;
@@ -33,13 +32,11 @@ int main( int argc , char *argv[] )
 """
 
 
-
-
-class simpleppp( IPlugin ):
+class supertoll_source( IPlugin ):
 
     def __init__( self ):
-        self.name = "simplecpp"
-        self.help = "Creates a simple \"Hello world\" C++ file with one main function."
+        self.name = "ambossmain"
+        self.help = "Creates a simple \"Hello world!\" application for Amboss."
 
 
     def register_in_arg_parser( self , subparsers ):
@@ -49,6 +46,7 @@ class simpleppp( IPlugin ):
 
     def do_work( self , args , replacements ):
         print "Creating " + self.name + " template(s) ..."
+
         if hasattr( args , "filename" ) :
             for filename in args.filename:
                 code_template_helpers.default_processing( filename , replacements , template )

@@ -1,45 +1,29 @@
 #! /usr/bin/python
 
 import os
-import imp
-import sys
-from string import Template
 
+from string import Template
 from yapsy.IPlugin import IPlugin
 
 import code_template_helpers
 
 
-
 filename_help = "Output file name(s)"
+namespace_help = "Namespace definitions to be created."
+class_help = "Class templates to be created" 
 template = """/*
  * $FILENAME
  * Date: $DATE
  * Author: $AUTHOR ($AUTHOREMAIL)
  */
-
-#include <iostream>
-
-#define tab "\\t"
-
-using namespace std;
-
-
-int main( int argc , char *argv[] )
-{
-    cout << "Hello world!" << endl;
-    return 0;
-}
 """
 
 
-
-
-class simpleppp( IPlugin ):
+class supertoll_source( IPlugin ):
 
     def __init__( self ):
-        self.name = "simplecpp"
-        self.help = "Creates a simple \"Hello world\" C++ file with one main function."
+        self.name = "supertollsource"
+        self.help = "Creates a source file for SuperToll."
 
 
     def register_in_arg_parser( self , subparsers ):
@@ -49,6 +33,7 @@ class simpleppp( IPlugin ):
 
     def do_work( self , args , replacements ):
         print "Creating " + self.name + " template(s) ..."
+
         if hasattr( args , "filename" ) :
             for filename in args.filename:
                 code_template_helpers.default_processing( filename , replacements , template )

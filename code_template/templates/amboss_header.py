@@ -15,6 +15,11 @@ template = """/*
  * $FILENAME
  * Date: $DATE
  * Author: $AUTHOR ($AUTHOREMAIL)
+ * Copyright: $AUTHOR
+ *
+ * Use, modification and distribution is subject to the Boost Software License,
+ * Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at
+ * http://www.boost.org/LICENSE_1_0.txt)
  */
 
 
@@ -39,8 +44,8 @@ class_template = """class $CLASSNAME
 class supertoll_header( IPlugin ):
 
     def __init__( self ):
-        self.name = "supertollheader"
-        self.help = "Creates a header file with header guards and namespace defintions for SuperToll."
+        self.name = "ambossheader"
+        self.help = "Creates a simple header with header guards for Amboss."
 
 
     def register_in_arg_parser( self , subparsers ):
@@ -53,10 +58,16 @@ class supertoll_header( IPlugin ):
     def do_work( self , args , replacements ):
         print "Creating " + self.name + " template(s) ..."
 
-        code_template_helpers.add_namespace_replacements( replacements , args , "SuperToll" )
+        code_template_helpers.add_namespace_replacements( replacements , args , "Amboss" )
         code_template_helpers.add_class_replacements( replacements , args , class_template )
-            
+      
         if hasattr( args , "filename" ) :
             for filename in args.filename:
                 code_template_helpers.default_processing( filename , replacements , template )
-                self.process( filename , replacements )
+
+
+    
+
+
+    
+    
