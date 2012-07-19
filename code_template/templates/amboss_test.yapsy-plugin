@@ -1,0 +1,9 @@
+[Core]
+Name = AmbossTest
+Module = amboss_test
+
+[Documentation]
+Author = Karsten Ahnert
+Version = 0.1
+Website = http://karstenahnert.com
+Description = Creates a test file for Amboss based on google test.
