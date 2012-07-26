@@ -1,0 +1,9 @@
+[Core]
+Name = SimpleHeader
+Module = simpleheader
+
+[Documentation]
+Author = Karsten Ahnert
+Version = 0.1
+Website = http://karstenahnert.com
+Description = Creates a simple C++ header file with header guards.

@@ -1,11 +1,14 @@
 #! /usr/bin/python
 
 import os
-
+import imp
+import sys
 from string import Template
+
 from yapsy.IPlugin import IPlugin
 
 import code_template_helpers
+
 
 
 filename_help = "Output file name(s)"
@@ -13,34 +16,25 @@ template = """/*
  * $FILENAME
  * Date: $DATE
  * Author: $AUTHOR ($AUTHOREMAIL)
- * Copyright: $AUTHOR
- *
- * Use, modification and distribution is subject to the Boost Software License,
- * Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at
- * http://www.boost.org/LICENSE_1_0.txt)
  */
 
-#include <sstream>
-
-#include <gtest/gtest.h>
-
-using namespace std;
-using namespace Amboss;
-
-TEST( TestName , TestCase )
-{
-    EXPECT_EQ( true , true );
 }
+#ifndef ${FILENAMECAP}_${FILEENDINGCAP}_INCLUDED
+#define ${FILENAMECAP}_${FILEENDINGCAP}_INCLUDED
+
+
+
+#endif // ${FILENAMECAP}_${FILEENDINGCAP}_INCLUDED
 """
 
 
 
 
-class supertoll_source( IPlugin ):
+class simpleppp( IPlugin ):
 
     def __init__( self ):
-        self.name = "ambosstest"
-        self.help = "Creates a test file for Amboss based on google test."
+        self.name = "simpleheader"
+        self.help = "Creates a simple C++ header file with header guards."
 
 
     def register_in_arg_parser( self , subparsers ):
@@ -50,7 +44,6 @@ class supertoll_source( IPlugin ):
 
     def do_work( self , args , replacements ):
         print "Creating " + self.name + " template(s) ..."
-
         if hasattr( args , "filename" ) :
             for filename in args.filename:
                 code_template_helpers.default_processing( filename , replacements , template )
