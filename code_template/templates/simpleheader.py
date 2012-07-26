@@ -18,7 +18,6 @@ template = """/*
  * Author: $AUTHOR ($AUTHOREMAIL)
  */
 
-}
 #ifndef ${FILENAMECAP}_${FILEENDINGCAP}_INCLUDED
 #define ${FILENAMECAP}_${FILEENDINGCAP}_INCLUDED
 
