@@ -17,13 +17,21 @@
 
 ; ecb customization
 
-(setq ecb-source-path '(
-			"/home/karsten/boost"
-                        "/home/karsten/src/"
-			"/home/karsten/src/test"
-			"/home/karsten/src/odeint-v2"
-                        "/home/karsten/src/ambrosys"
-                       ))
+(setq ecb-source-path '( ("/home/karsten/boost" "boost")
+			 ("/home/karsten/src/test" "test")
+			 ("/home/karsten/src/odeint-v2" "odeint")
+			 ("/home/karsten/src/ambrosys/tc-supertoll/trunk/src" "SuperToll")
+			 ("/home/karsten/src/ambrosys/tc-supertoll/util/AModTest" "AMod")
+			 ("/home/karsten/src/ambrosys/tc-supertoll/util/TestSuite" "TestSuite")
+			 ("/home/karsten/src/ambrosys/tc-supertoll/util/OsmTools" "OsmTools")
+			 ("/home/karsten/src/ambrosys/tc-supertoll/util/ShapeFileTools" "ShapeFileTools")
+			 ("/home/karsten/src/ambrosys/tc-supertoll/validierung" "Validierung")
+			 ("/home/karsten/src/ambrosys/Amboss" "Amboss")
+                         ("/home/karsten/src/ambrosys/tc-supertoll/data" "SuperToll Data")
+                         ("/home/karsten/src/ambrosys/tc-supertoll/mv-app" "MV App")
+                         ("/home/karsten/src/github_stuff" "Stuff")
+                         ) )
+
 (setq ecb-layout-name "left13")
 (setq ecb-tip-of-the-day nil)
 

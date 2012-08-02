@@ -39,7 +39,7 @@ namespace rule_engine
     public:
         template< class T >
         unary_expr( T child ) : m_child( std::move( child ) ) { }
-        unary_expr( expr child ) : m_child( child ) { }
+
 
         expr& child( void ) { return m_child; }
         const expr& child( void ) const { return m_child; }
@@ -53,13 +53,6 @@ namespace rule_engine
         template< class T1 , class T2 >
         binary_expr( T1 left , T2 right ) : m_left( std::move( left ) ) , m_right( std::move( right ) ) { }
 
-        template< class T1 >
-        binary_expr( T1 left , expr right ) : m_left( std::move( left ) ) , m_right( right ) { }
-
-        template< class T2 >
-        binary_expr( expr left , T2 right ) : m_left( left ) , m_right( std::move( right ) ) { }
-
-        binary_expr( expr left , expr right ) : m_left( left ) , m_right( right ) { }
 
         expr& left( void ) { return m_left; }
         const expr& left( void ) const { return m_left; }

@@ -45,6 +45,9 @@ int main( int argc , char *argv[] )
     expr e5( std::move( not_( f ) ) );    // why does that not ?
     cout << e5() << endl;
 
+    expr e6( e );
+    cout << e6() << endl;
+
 
     return 0;
 }
