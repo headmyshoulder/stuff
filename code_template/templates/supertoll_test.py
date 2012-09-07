@@ -3,9 +3,9 @@
 import os
 
 from string import Template
-from yapsy.IPlugin import IPlugin
 
-from code_template_helpers import *
+import code_template_helpers 
+
 
 
 filename_help = "Output file name(s)"
@@ -55,15 +55,10 @@ CPPUNIT_TEST_SUITE_REGISTRATION( TESTNAME );
 
 
 
-class supertoll_header( IPlugin ):
-
-    def __init__( self ):
-        self.name = "supertolltest"
-        self.help = "Creates a SuperToll test file."
-
+class supertoll_header( code_template_helpers.APlugin ):
 
     def register_in_arg_parser( self , subparsers ):
-        parser = create_subparser( self , subparsers )
+        parser = code_template_helpers.create_subparser( self , subparsers )
         parser.add_argument( "-f" , "--filename" ,  nargs = "+" , help = filename_help , required=True )
         parser.add_argument( "-t" , "--testname" , nargs = "?" , help = testname_help , dest = "testname" , default="SuperTollTest" )
 
@@ -81,4 +76,5 @@ class supertoll_header( IPlugin ):
 
         if hasattr( args , "filename" ) :
             for filename in args.filename:
-                default_processing( filename , replacements , template )
+                filename = code_template_helpers.check_filename_ending( filename , "cpp" )
+                code_template_helpers.default_processing( filename , replacements , template )

@@ -1,0 +1,9 @@
+[Core]
+Name = SuperTollGTest
+Module = supertoll_googletest
+
+[Documentation]
+Author = Karsten Ahnert
+Version = 0.1
+Website = http://karstenahnert.com
+Description = Creates a SuperToll test file for the gtest framework.

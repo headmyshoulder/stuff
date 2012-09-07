@@ -3,9 +3,8 @@
 import os
 
 from string import Template
-from yapsy.IPlugin import IPlugin
 
-import code_template_helpers
+import code_template_helpers 
 
 
 filename_help = "Output file name(s)"
@@ -22,12 +21,7 @@ template = """/*
 """
 
 
-class supertoll_source( IPlugin ):
-
-    def __init__( self ):
-        self.name = "ambosssource"
-        self.help = "Creates a source file for Amboss."
-
+class supertoll_source( code_template_helpers.APlugin ):
 
     def register_in_arg_parser( self , subparsers ):
         parser = code_template_helpers.create_subparser( self , subparsers )
@@ -39,4 +33,5 @@ class supertoll_source( IPlugin ):
 
         if hasattr( args , "filename" ) :
             for filename in args.filename:
+                filename = code_template_helpers.check_filename_ending( filename , "cpp" )
                 code_template_helpers.default_processing( filename , replacements , template )

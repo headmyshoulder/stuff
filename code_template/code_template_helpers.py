@@ -2,6 +2,7 @@
 
 import os
 from string import Template
+from yapsy.IPlugin import IPlugin
 
 default_class_template = """class $CLASSNAME
 {
@@ -15,9 +16,41 @@ public:
 
 
 def create_subparser( plugin , subparsers ):
-    parser = subparsers.add_parser( plugin.name , help = plugin.help )
+    parser = subparsers.add_parser( plugin.name , help = plugin.description )
     parser.set_defaults( which = plugin.name )
     return parser
+
+def check_filename_ending( filename , default_ending ) :
+    endings = ( "cpp" , "py" , "h" , "hpp" , "c" , "cxx" , "cc" , "hxx" , "ipp" )
+    if( default_ending not in endings ):
+        raise Exception( "Unknown default ending " + default_ending)
+    ending = os.path.splitext( filename )[1]
+    if( len( ending ) == 0 ):
+        return os.path.splitext( filename )[0] + "." + default_ending
+    if( len( ending ) ==  1 ):
+        return os.path.splitext( filename )[0] + "." + default_ending
+    if( ending != ( "." + default_ending ) ):
+        print "Maybe the filename has the wrong line ending : " + filename + " , expected is " + default_ending
+        return filename
+    return filename
+
+
+
+class APlugin( IPlugin ) :
+    def __init__( self ):
+        self.name = "APlugin"
+        self.description = "Description"
+
+    def set_name( self , name ):
+        self.name = name
+    
+    def set_description( self , description ):
+        self.description = description
+
+
+    
+    
+    
 
 
 

@@ -5,10 +5,7 @@ import imp
 import sys
 from string import Template
 
-from yapsy.IPlugin import IPlugin
-
-import code_template_helpers
-
+import code_template_helpers 
 
 
 filename_help = "Output file name(s)"
@@ -29,12 +26,7 @@ template = """/*
 
 
 
-class simpleppp( IPlugin ):
-
-    def __init__( self ):
-        self.name = "simpleheader"
-        self.help = "Creates a simple C++ header file with header guards."
-
+class simpleppp( code_template_helpers.APlugin ):
 
     def register_in_arg_parser( self , subparsers ):
         parser = code_template_helpers.create_subparser( self , subparsers )
@@ -45,4 +37,5 @@ class simpleppp( IPlugin ):
         print "Creating " + self.name + " template(s) ..."
         if hasattr( args , "filename" ) :
             for filename in args.filename:
+                filename = code_template_helpers.check_filename_ending( filename , "h" )
                 code_template_helpers.default_processing( filename , replacements , template )

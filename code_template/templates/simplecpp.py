@@ -5,9 +5,7 @@ import imp
 import sys
 from string import Template
 
-from yapsy.IPlugin import IPlugin
-
-import code_template_helpers
+import code_template_helpers 
 
 
 
@@ -35,12 +33,7 @@ int main( int argc , char *argv[] )
 
 
 
-class simpleppp( IPlugin ):
-
-    def __init__( self ):
-        self.name = "simplecpp"
-        self.help = "Creates a simple \"Hello world\" C++ file with one main function."
-
+class simpleppp( code_template_helpers.APlugin ):
 
     def register_in_arg_parser( self , subparsers ):
         parser = code_template_helpers.create_subparser( self , subparsers )
@@ -51,4 +44,5 @@ class simpleppp( IPlugin ):
         print "Creating " + self.name + " template(s) ..."
         if hasattr( args , "filename" ) :
             for filename in args.filename:
+                filename = code_template_helpers.check_filename_ending( filename , "cpp" )
                 code_template_helpers.default_processing( filename , replacements , template )
