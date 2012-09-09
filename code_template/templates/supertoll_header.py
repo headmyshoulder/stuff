@@ -43,7 +43,7 @@ class supertoll_header( code_template_helpers.APlugin ):
     def do_work( self , args , replacements ):
         print "Creating " + self.name + " template(s) ..."
 
-        code_template_helpers.add_namespace_replacements( replacements , args , "SuperToll" )
+        code_template_helpers.add_namespace_replacements( replacements , args , [ "SuperToll" ] )
         code_template_helpers.add_class_replacements( replacements , args , code_template_helpers.default_class_template )
             
         if hasattr( args , "filename" ) :

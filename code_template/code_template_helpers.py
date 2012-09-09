@@ -63,9 +63,13 @@ def add_filename_replacements( rep , filename ):
 
 
 
-def add_namespace_replacements( replacements , args , top_namespace ):
-    replacements[ "NAMESPACE_OPENING" ] = "namespace " + top_namespace + " {\n"
-    replacements[ "NAMESPACE_CLOSING" ] = "} // namespace " + top_namespace + "\n"
+def add_namespace_replacements( replacements , args , default_namespaces ):
+
+    replacements[ "NAMESPACE_CLOSING" ] = ""
+    replacements[ "NAMESPACE_OPENING" ] = ""
+    for n in default_namespaces :
+        replacements[ "NAMESPACE_OPENING" ] += "namespace " + n + " {\n"
+        replacements[ "NAMESPACE_CLOSING" ] = "} // namespace " + n + "\n" + replacements[ "NAMESPACE_CLOSING" ]
 
     if hasattr( args , "namespace" ) and ( args.namespace is not None ) and ( len( args.namespace ) != 0 ) :
         s = "Found namespace(s) : "
@@ -98,3 +102,85 @@ def default_processing( filename , replacements , template ):
     source = Template( template )
     f = open( filename , "w" );
     f.write( source.substitute( replacements ) )
+
+
+def first_n_same( p1 , p2 ):
+    n = min( len(p1) , len(p2 ) )
+    for i in range(0,n):
+        if( p1[i] != p2[i] ) : return False;
+    return True
+
+def full_split_impl( path , arr ):
+    p = os.path.split( path )
+    if( p[1] != "" ) :
+        arr.append( p[1] )
+        return full_split_impl( p[0] , arr )
+    if( p[0] == "/" ):
+        return arr
+    if( p[0] != "" ):
+        return full_split_impl( p[0] , arr )
+    return arr
+
+def full_split( path ):
+    arr = full_split_impl( path , [] )
+    arr.reverse()
+    return arr
+
+def full_join( path ):
+    p = ""
+    if len( path ) != 0 :
+        p += path[0]
+    for i in range(1,len(path)):
+        p += "/" + path[i]
+    return p
+
+
+
+def find_boost_path( boost_path ):
+    path = full_split( os.getcwd() )
+    r = range( 0 , len( path ) )
+    r.reverse()
+    found = False
+    for i in r:
+        if path[i] == boost_path[0] :
+            if first_n_same( path[i:] , boost_path ) :
+                found = True
+                break
+    if found :
+        return path[ i : ]
+    else :
+        return []
+
+def find_odeint_lib_path():
+    return find_boost_path( [ "libs" , "numeric" , "odeint" ] )
+    
+def find_odeint_header_path():
+    return find_boost_path( [ "boost" , "numeric" , "odeint" ] )
+
+def create_cap_boost_filename_str( f ):
+    f = f.replace( "/" , "_" )
+    f = f.replace( "." , "_" )
+    f = f.upper()
+    f = f + "_DEFINED"
+    return f
+
+
+if __name__ == "__main__" :
+
+    p1 = [ "boost" , "numeric" , "odeint" ]
+    p2 = [ "boost" , "numeric" , "odeint" , "stepper" ]
+    p3 = [ "home" , "karsten" , "src" , "odeint-v2" , "boost" , "numeric" , "odeint" , "stepper" ]
+    p4 = [ "boost" , "numeric" ]
+
+    # print first_n_same( p1 , p2 )
+    # print first_n_same( p2 , p1 )
+    # print first_n_same( p1 , p3 )
+    # print first_n_same( p3 , p1 )
+    # print first_n_same( p1 , p4 )
+    # print first_n_same( p4 , p1 )
+
+    find_boost_path( p1 )
+
+    print full_split( os.getcwd() )
+
+    print create_cap_boost_filename_str( "boost/numeric/a.hpp" )
