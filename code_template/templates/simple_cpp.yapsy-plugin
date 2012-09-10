@@ -1,6 +1,6 @@
 [Core]
 Name = SimpleCpp
-Module = simplecpp
+Module = simple_cpp
 
 [Documentation]
 Author = Karsten Ahnert

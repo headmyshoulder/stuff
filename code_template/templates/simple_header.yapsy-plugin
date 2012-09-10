@@ -1,6 +1,6 @@
 [Core]
 Name = SimpleHeader
-Module = simpleheader
+Module = simple_header
 
 [Documentation]
 Author = Karsten Ahnert

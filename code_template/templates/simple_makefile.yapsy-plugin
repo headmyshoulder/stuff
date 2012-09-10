@@ -1,6 +1,6 @@
 [Core]
 Name = SimpleMakefile
-Module = simplemakefile
+Module = simple_makefile
 
 [Documentation]
 Author = Karsten Ahnert
