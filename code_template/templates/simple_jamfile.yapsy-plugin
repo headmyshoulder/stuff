@@ -1,0 +1,9 @@
+[Core]
+Name = SimpleJamfile
+Module = simple_jamfile
+
+[Documentation]
+Author = Karsten Ahnert
+Version = 0.1
+Website = http://karstenahnert.com
+Description = Creates a simple jamfile.
