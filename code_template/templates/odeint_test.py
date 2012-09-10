@@ -9,6 +9,7 @@ import code_template_helpers
 
 
 filename_help = "Output file name(s)"
+test_help = "Name of the test."
 template = """/*
  [auto_generated]
  $BOOSTFILENAME
@@ -25,17 +26,28 @@ template = """/*
  copy at http://www.boost.org/LICENSE_1_0.txt)
  */
 
-#include <iostream>
+#include <boost/config.hpp>
+#ifdef BOOST_MSVC
+    #pragma warning(disable:4996)
+#endif
 
-#include <boost/numeric/odeint.hpp>
+#define BOOST_TEST_MODULE odeint_$TESTNAME
 
-namespace odeint = boost::numeric::odeint;
+#include <boost/test/unit_test.hpp>
 
-int main( int argc , char *argv[] )
+#include <boost/numeric/odeint/stepper/runge_kutta4.hpp>
+
+using namespace boost::unit_test;
+using namespace boost::numeric::odeint;
+
+
+BOOST_AUTO_TEST_SUITE( ${TESTNAME}_test )
+
+BOOST_AUTO_TEST_CASE( test_case1 )
 {
-    std::cout << "Hello world!" << std::endl;
-    return 0;
+    BOOST_CHECK_EQUAL( 1 , 1 );
 }
+
 """
 
 
@@ -43,17 +55,24 @@ int main( int argc , char *argv[] )
 
 
 
-class simpleppp( code_template_helpers.APlugin ):
+class odeint_test( code_template_helpers.APlugin ):
 
     def register_in_arg_parser( self , subparsers ):
         parser = code_template_helpers.create_subparser( self , subparsers )
         parser.add_argument( "filename" ,  nargs = "+" , help = filename_help )
+        parser.add_argument( "-t" , "--test" , nargs = 1 , help = test_help )
+
 
 
     def do_work( self , args , replacements ):
         print "Creating " + self.name + " template(s) ..."
 
         path = code_template_helpers.find_odeint_lib_path()
+
+        replacements[ "TESTNAME" ] = "dummy"
+        if hasattr( args , "test" ) and ( args.test is not None ) and ( len( args.test ) == 1 ):
+            print "Found test " + args.test[0]
+            replacements[ "TESTNAME" ] = args.test[0]
 
 
         if hasattr( args , "filename" ) :
