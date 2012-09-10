@@ -1,0 +1,9 @@
+[Core]
+Name = SimpleCMakeLists
+Module = simple_cmakelists
+
+[Documentation]
+Author = Karsten Ahnert
+Version = 0.1
+Website = http://karstenahnert.com
+Description = Creates a simple CMakeLists.txt.
