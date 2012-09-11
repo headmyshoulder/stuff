@@ -157,6 +157,11 @@ def find_odeint_lib_path():
 def find_odeint_header_path():
     return find_boost_path( [ "boost" , "numeric" , "odeint" ] )
 
+def find_odeint_path():
+    p1 = find_odeint_header_path()
+    if len( p1 ) == 0 : return find_odeint_lib_path()
+    else : return p1
+
 def create_cap_boost_filename_str( f ):
     f = f.replace( "/" , "_" )
     f = f.replace( "." , "_" )
