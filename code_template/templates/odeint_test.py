@@ -48,6 +48,7 @@ BOOST_AUTO_TEST_CASE( test_case1 )
     BOOST_CHECK_EQUAL( 1 , 1 );
 }
 
+BOOST_AUTO_TEST_SUITE_END()
 """
 
 
