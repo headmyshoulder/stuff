@@ -31,8 +31,8 @@ void test1( void )
     expr_type e2( n );
     cout << e2() << endl;
 
-    // expr_type e3( not_( f ) );
-    // cout << e3() << endl;
+    expr_type e3( not_( f ) );
+    cout << e3() << endl;
 
     expr_type e4( and_( t , or_( f , t ) ) );
     cout << e4() << endl;

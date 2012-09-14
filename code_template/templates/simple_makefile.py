@@ -25,7 +25,7 @@ all : $TARGET
 $TARGETS
 
 clean :
-    rm *.o *~ $TARGET
+\trm *.o *~ $TARGET
 """
 
 
