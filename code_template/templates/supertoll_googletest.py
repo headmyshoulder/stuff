@@ -42,5 +42,5 @@ class supertoll_googletest( code_template_helpers.APlugin ):
 
         if hasattr( args , "filename" ) :
             for filename in args.filename:
-                filename = check_filename_ending( filename , "cpp" )
+                filename = code_template_helpers.check_filename_ending( filename , "cpp" )
                 code_template_helpers.default_processing( filename , replacements , template )
