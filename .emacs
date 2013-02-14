@@ -9,6 +9,7 @@
 
 (setq c-default-style '((c++-mode . "bsd")))
 (setq c-basic-offset 4)
+(c-set-offset 'innamespace 0)
 (setq-default indent-tabs-mode nil)
 
 (add-to-list 'auto-mode-alist '("\\.cu$" . c++-mode))
@@ -52,17 +53,16 @@
 			 ( "/home/karsten/src/odeint-v2" "odeint" )
                          ( "/home/karsten/src/ambrosys" "ambrosys" )
                          ( "/home/karsten/src/ambrosys/tc-supertoll/trunk/src" "SuperToll" )
-                         ( "/home/karsten/src/ambrosys/tc-supertoll/validierung" "Validierung" )
                          ( "/home/karsten/src/ambrosys/Amboss" "Amboss" )
-                         ( "/home/karsten/src/ambrosys/tc-supertoll/util/AModTest" "AMod" )
-                         ( "/home/karsten/tex/projects/vexcl_odeint_paper" "VexCLOdeintPaper" )
                          ( "/home/karsten/src/ambrosys/tc-supertoll/data" "SuperTollData" )
-                         ( "/home/karsten/src/ambrosys/tc-supertoll/util/svm" "SVM" )
-                         ( "/home/karsten/boost/testing/llvm/llvm-test-tooling" "LLVM" )
+                         ( "/home/karsten/src/genetic_programming" "GP" )
+                         ( "/home/karsten/src/ambrosys/tc-supertoll/branches/bd_new" "SuperTollRedesign" )
                        ))
 
-(setq ecb-layout-name "left13")
+; (setq ecb-layout-name "left13")
 ; (setq ecb-layout-name "left3")
+(setq ecb-layout-name "leftright3")
+(setq ecb-show-sources-in-directories-buffer '("left7" "left13" "left14" "left15" "leftright3" "left3"))
 (setq ecb-tip-of-the-day nil)
 
 
@@ -91,36 +91,49 @@
 (tabbar-mode)           ; tabbar
 (global-subword-mode 1) ; camel case
 
+
+; supress scratch buffer
+(kill-buffer "*scratch*")
+(setq message-log-max nil)
+
 ; copy and pasting
 (setq x-select-enable-clipboard t) ; as above
 (setq interprogram-paste-function 'x-cut-buffer-or-selection-value)
 
 
 
-;(ede-cpp-root-project "AMod"
-;                :name "AMod"
-;                :file "~/src/ambrosys/tc-supertoll/util/AModTest/Jamroot"
-;                :include-path '("/SuperToll" )
-;                :system-include-path '("~/boost/boost_1_50_0/")
-;                :spp-table '(("isUnix" . "")
-;                             ("BOOST_TEST_DYN_LINK" . "")))
-
-(ede-cpp-root-project "LLVM"
-                :name "LLVM"
-                :file "~/boost/testing/llvm/llvm-test-tooling/ABC"
-                :include-path '("/source/include" "/source/tools/clang/include" "/build/include" "/build/tools/clang/include" )
-                :system-include-path '("~/boost/boost_1_50_0/")
-                :spp-table '(("isUnix" . "")
-                             ("BOOST_TEST_DYN_LINK" . "")))
-
 (ede-cpp-root-project "SuperToll"
                 :name "SuperToll"
                 :file "~/src/ambrosys/tc-supertoll/trunk/src/Jamroot"
                 :include-path '("/SuperToll"  )
-                :system-include-path '("~/boost/boost_1_50_0/")
+                :system-include-path '("~/boost/boost_1_51_0/")
                 :spp-table '(("isUnix" . "")
                              ("BOOST_TEST_DYN_LINK" . "")))
 
+(ede-cpp-root-project "odeint"
+                :name "odeint"
+                :file "~/src/odeint-v2/Jamroot"
+                :include-path '("/"  )
+                :system-include-path '("~/boost/boost_1_51_0/")
+                :spp-table '(("isUnix" . "")
+                             ("BOOST_TEST_DYN_LINK" . "")))
+
+(ede-cpp-root-project "GP"
+                :name "GP"
+                :file "~/src/genetic_programming/CMakeLists.txt"
+                :include-path '("/"  )
+                :system-include-path '("~/boost/boost_1_51_0/")
+                :spp-table '(("isUnix" . "")
+                             ("BOOST_TEST_DYN_LINK" . "")))
+
+
+(ede-cpp-root-project "SuperTollRedesign"
+                :name "SuperTollRedesign"
+                :file "~/src/ambrosys/tc-supertoll/branches/bd_new/Jamroot"
+                :include-path '("/SuperToll"  )
+                :system-include-path '("~/boost/boost_1_51_0/")
+                :spp-table '(("isUnix" . "")
+                             ("BOOST_TEST_DYN_LINK" . "")))
 
 
 
