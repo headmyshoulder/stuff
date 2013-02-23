@@ -30,8 +30,8 @@ public:
         double a1 = (*args)[ 0 ];
         double a2 = (*args)[ 1 ];
         double a3 = (*args)[ 2 ];
-        double a4 = (*args)[ 2 ];
-        double a5 = (*args)[ 2 ];
+        double a4 = (*args)[ 3 ];
+        double a5 = (*args)[ 4 ];
 
         double chi2 = 0.0;
         size_t N = min3( m_x1.size() , m_x2.size() , m_y.size() );
@@ -77,7 +77,7 @@ typedef boost::shared_ptr< objective_function > objective_function_ptr;
 int main( int argc , char **argv )
 {
     const size_t vars_count = 5;
-    const size_t population_size = 2000;
+    const size_t population_size = 20000;
 
     std::vector< double > x1 , x2 , y;
     std::mt19937 rng;
