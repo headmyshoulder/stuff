@@ -28,6 +28,7 @@ include_directories ( ${THREAD_POOL_INCLUDE_DIR} )
 
 add_subdirectory ( impl1 )
 add_subdirectory ( impl2 )
+add_subdirectory ( impl3 )
 
 
 add_executable ( main main.cpp )
