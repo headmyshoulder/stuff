@@ -1,0 +1,9 @@
+[Core]
+Name = ZEHeader
+Module = ze_header
+
+[Documentation]
+Author = Karsten Ahnert
+Version = 0.1
+Website = http://karstenahnert.com
+Description = Creates a header file with header guards and namespace defintions for ZE (Zentrale Erkennung).
