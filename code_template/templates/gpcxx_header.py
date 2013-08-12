@@ -8,7 +8,7 @@ import code_template_helpers
 
 
 filename_help = "Output file name(s)"
-namespace_help = "Additional namespace definitions to be created. gp will be always created."
+namespace_help = "Additional namespace definitions to be created. gpcxx will be always created."
 class_help = "Class template(s) to be created" 
 template = """/*
   $BOOSTFILENAME
@@ -36,7 +36,7 @@ $NAMESPACE_CLOSING
 
 
 
-class gp_header( code_template_helpers.APlugin ):
+class gpcxx_header( code_template_helpers.APlugin ):
 
     def register_in_arg_parser( self , subparsers ):
         parser = code_template_helpers.create_subparser( self , subparsers )
@@ -48,9 +48,9 @@ class gp_header( code_template_helpers.APlugin ):
     def do_work( self , args , replacements ):
         print "Creating " + self.name + " template(s) ..."
 
-        path = code_template_helpers.find_gp_path()
+        path = code_template_helpers.find_gpcxx_path()
 
-        code_template_helpers.add_namespace_replacements( replacements , args , [ "gp" ] )
+        code_template_helpers.add_namespace_replacements( replacements , args , [ "gpcxx" ] )
         code_template_helpers.add_class_replacements( replacements , args , code_template_helpers.default_class_template )
             
         if hasattr( args , "filename" ) :

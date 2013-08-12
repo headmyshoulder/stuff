@@ -1,9 +1,9 @@
 [Core]
-Name = GPHeader
-Module = gp_header
+Name = GPCXXHeader
+Module = gpcxx_header
 
 [Documentation]
 Author = Karsten Ahnert
 Version = 0.1
 Website = http://karstenahnert.com
-Description = Creates a header file with header guards and namespace defintions for gp.
+Description = Creates a header file with header guards and namespace defintions for gpcxx.

@@ -1,9 +1,9 @@
 [Core]
-Name = GPTest
-Module = gp_test
+Name = GPCXXTest
+Module = gpcxx_test
 
 [Documentation]
 Author = Karsten Ahnert
 Version = 0.1
 Website = http://karstenahnert.com
-Description = Creates a unit test file (example) for odeint.
+Description = Creates a unit test file (example) for gpcxx.

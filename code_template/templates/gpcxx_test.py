@@ -20,13 +20,15 @@ template = """/*
  copy at http://www.boost.org/LICENSE_1_0.txt)
  */
 
+#include <gtest/gtest.h>
+
 #include <sstream>
 
-#include <gtest/gtest.h>
+#define TESTNAME $TESTNAME
 
 using namespace std;
 
-TEST( TestName , TestCase )
+TEST( TESTNAME , TestCase )
 {
     EXPECT_EQ( true , true );
 }
@@ -38,7 +40,7 @@ TEST( TestName , TestCase )
 
 
 
-class gp_test( code_template_helpers.APlugin ):
+class gpcxx_test( code_template_helpers.APlugin ):
 
     def register_in_arg_parser( self , subparsers ):
         parser = code_template_helpers.create_subparser( self , subparsers )

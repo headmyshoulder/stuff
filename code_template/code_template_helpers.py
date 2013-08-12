@@ -154,19 +154,19 @@ def find_boost_path( boost_path ):
 def find_odeint_lib_path():
     return find_boost_path( [ "libs" , "numeric" , "odeint" ] )
     
-def find_odeint_header_path():
-    return find_boost_path( [ "boost" , "numeric" , "odeint" ] )
+# def find_odeint_header_path():
+#    return find_boost_path( [ "boost" , "numeric" , "odeint" ] )
 
 def find_odeint_header_path():
-    p1 = find_odeint_header_path()
+    p1 = find_boost_path( [ "boost" , "numeric" , "odeint" ] )
     if len( p1 ) == 0 : return find_odeint_lib_path()
     else : return p1
     
-def find_gp_header_path():
-    return find_boost_path( [ "gp" ] )
+def find_gpcxx_header_path():
+    return find_boost_path( [ "gpcxx" ] )
     
-def find_gp_path():
-    return find_gp_header_path()
+def find_gpcxx_path():
+    return find_gpcxx_header_path()
     
 
 def create_cap_boost_filename_str( f ):

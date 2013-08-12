@@ -54,7 +54,7 @@ class odeint_header( code_template_helpers.APlugin ):
     def do_work( self , args , replacements ):
         print "Creating " + self.name + " template(s) ..."
 
-        path = code_template_helpers.find_odeint_path()
+        path = code_template_helpers.find_odeint_header_path()
 
         code_template_helpers.add_namespace_replacements( replacements , args , [ "boost" , "numeric" , "odeint" ] )
         code_template_helpers.add_class_replacements( replacements , args , code_template_helpers.default_class_template )
