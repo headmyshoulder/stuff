@@ -18,6 +18,14 @@ if ( CMAKE_COMPILER_IS_GNUCXX )
 endif ()
 
 include_directories ( ${Boost_INCLUDE_DIRS} )
+include_directories ( gtest gtest/include )
+include_directories ( gmock gmock/include )
 
+enable_testing ( true )
 
 add_executable ( main main.cpp )
+
+add_executable ( ExprGTest ExprGTest.cpp gtest/src/gtest-all.cc gtest/src/gtest_main.cc gmock/src/gmock-all.cc )
+target_link_libraries ( ExprGTest pthread )
+
+add_test( NAME ExprGTest COMMAND ExprGTest )  

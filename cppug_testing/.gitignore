@@ -1,0 +1,7 @@
+build
+gmock
+gtest
+.kdev4/
+*.kdev4
+
+
