@@ -29,3 +29,10 @@ add_executable ( ExprGTest ExprGTest.cpp gtest/src/gtest-all.cc gtest/src/gtest_
 target_link_libraries ( ExprGTest pthread )
 
 add_test( NAME ExprGTest COMMAND ExprGTest )  
+
+
+
+add_executable ( ExprCppunit CppunitMain ExprCppunit.cpp )
+target_link_libraries ( ExprCppunit cppunit )
+
+add_test( NAME ExprCppunit COMMAND ExprCppunit )

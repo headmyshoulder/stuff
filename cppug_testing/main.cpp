@@ -1,8 +1,26 @@
 /*
- * main.cpp
- * Date: 2013-08-12
- * Author: Karsten Ahnert (karsten.ahnert@gmx.de)
- */
+
+TESTING
+
+Karsten Ahnert
+Ambrosys GmbH
+
+
+Frameworks und Best Practises
+
+Content
+
+Introduction
+
+Frameworks
+
+Library Code
+
+
+
+
+*/
+
 
 #include "Expr.h"
 
