@@ -20,7 +20,7 @@ TEST( TrueTest , eval )
 {
     True expr;
     EXPECT_TRUE( expr.eval() );
-    ASSERT_TRUE( expr.eval() );
+    // ASSERT_TRUE( expr.eval() );
 }
 
 TEST( TrueTest , arity )

@@ -161,7 +161,8 @@ public:
 class Not : public UnaryBooleanExpr
 {
 public:
-    Not( BooleanExprPtr child ) : UnaryBooleanExpr( std::move( child ) ) { }
+    Not( BooleanExprPtr child )
+    : UnaryBooleanExpr( std::move( child ) ) { }
     
     bool eval( void ) override { return ! m_child->eval(); }
 };
