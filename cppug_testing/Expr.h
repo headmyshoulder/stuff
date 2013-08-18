@@ -13,7 +13,10 @@
 
 
 
-
+/*
+ * Main Interface
+ * Classic polymorphism
+ */
 template< typename Result >
 class IExpr
 {
@@ -23,6 +26,7 @@ public:
     virtual size_t arity( void ) const = 0;
     virtual Result eval( void ) = 0;
 };
+
 
 template< typename Result >
 using UniqueExprPtr = std::unique_ptr< IExpr< Result > >;
@@ -34,13 +38,18 @@ using UniqueExprPtr = std::unique_ptr< IExpr< Result > >;
 
 
 
+
+
+
+/*
+ * Abstract expressions
+ */
 template< typename Result >
 class TerminalExpr : public IExpr< Result >
 {
 public:
     size_t arity( void ) const override { return 0; }
 };
-
 
 
 template< typename Result >
@@ -59,8 +68,6 @@ protected:
     
     UniqueExprPtr< Result > m_child;
 };
-
-
 
 
 template< typename Result >
@@ -87,17 +94,54 @@ protected:
 
 
 
+
+
+
+
+/*
+ * Some shortcuts
+ */
+
+
+// Boolean expressions
 using BooleanExpr = IExpr< bool >;
 using BooleanExprPtr = UniqueExprPtr< bool >;
 using TerminalBooleanExpr = TerminalExpr< bool >;
 using UnaryBooleanExpr = UnaryExpr< bool >;
 using BinaryBooleanExpr = BinaryExpr< bool >;
 
+// Floating point expressions
 using FloatingPointExpr = IExpr< double >;
 using TerminalFloatingPointExpr = TerminalExpr< double >;
 using UnaryFloatingPointExpr = UnaryExpr< double >;
 using BinaryFloatingPointExpr = BinaryExpr< double >;
 using FloatingPointExprPtr = UniqueExprPtr< double >;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 class True : public TerminalBooleanExpr
