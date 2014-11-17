@@ -1,0 +1,28 @@
+; C++ stuff
+(setq c-default-style '((c++-mode . "bsd")))
+(setq c-basic-offset 4)
+(c-set-offset 'innamespace 0)
+(setq-default indent-tabs-mode nil)
+
+(add-to-list 'auto-mode-alist '("\\.cu$" . c++-mode))
+(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+(add-to-list 'auto-mode-alist '("\\.xsd\\'" . xml-mode))
+(add-to-list 'auto-mode-alist '("\\.xslt\\'" . xml-mode))
+
+; tabbar customization
+(setq tabbar-buffer-groups-function
+      (lambda ()
+	(list "All"))) ;; code by Peter Barabas
+
+; startup modes
+(tabbar-mode)           ; tabbar
+(global-subword-mode 1) ; camel case
+
+
+; supress scratch buffer
+(kill-buffer "*scratch*")
+(setq message-log-max nil)
+
+; copy and pasting
+(setq x-select-enable-clipboard t) ; as above
+(setq interprogram-paste-function 'x-cut-buffer-or-selection-value)
